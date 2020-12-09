@@ -113,11 +113,11 @@ services:
       - "traefik.docker.network=external-proxy"
     container_name: ms-transaction
     hostname: ms-transaction
+    restart: always
     build:
       context: ./transactions
       dockerfile: Dockerfile
     depends_on:
-      - openldap
       - postgres
       - ms-auth
     networks:
