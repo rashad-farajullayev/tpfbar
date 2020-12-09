@@ -1,0 +1,15 @@
+
+ldap:
+    urls: ldap://localhost:389/
+    base: dc=paydaybank,dc=com
+    dn:   cn=admin,dc=paydaybank,dc=com
+    pass: admin_pass
+
+
+security:
+    jwt:
+        token:
+            secret-key: secret
+            expire-length: 1800000
+server:
+    port: 7080

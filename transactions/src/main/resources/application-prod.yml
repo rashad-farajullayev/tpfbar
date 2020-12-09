@@ -1,0 +1,13 @@
+
+spring:
+  datasource:
+    driver: org.postgresql.Driver
+    url: jdbc:postgresql://postgres:5432/transactions
+    username: root_user
+    password: root_user_password
+
+server:
+  port: 80
+
+ms-auth:
+  url: "http://ms-auth/validate"

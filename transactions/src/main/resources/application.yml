@@ -1,0 +1,26 @@
+
+spring:
+  datasource:
+    driver: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/transactions
+    username: root_user
+    password: root_user_password
+    hikari:
+      connection-timeout: 60000
+      maximum-pool-size: 5
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    show-sql: false
+    properties:
+      hibernate:
+        temp:
+          use_jdbc_metadata_defaults: false
+  liquibase:
+    change-log: classpath:liquibase/changelog-master.xml
+
+server:
+  port: 8082
+
+ms-auth:
+  url: "http://localhost:7080/validate"
