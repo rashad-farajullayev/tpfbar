@@ -39,3 +39,24 @@
 8. Expand the `auth-controller` and use the `POST /login` method. Fill in newly created username (i.e. `rashadf`) and your password, click the execute button. The result shall give you response.
 9. From the response grab access token (Note, Refresh token not implemented yet).
 10. Open swagger of transactions microservice: http://127.0.0.1/api/transaction/swagger-ui.html
+11. On the right of this page click `Authorize` button and in the popup type:
+    ```
+    Bearer <your-access-token-here>
+    ```
+    Paste your access token there in the Value box after typing the "Bearer " value. Click `Authorize` to close popup
+12. Expand transaction controller: Fill in values and execute:
+    * hookUrl: http://www.google.com
+    * maximumPrice: `123.45`
+    * stockId: `67`
+    * userId: `rashadex`
+    
+    Click execute.
+13. Watch logs. After 2 mins a mock-up message will pop-up about rest request to hookUrl
+
+---
+## TODO
+1. Beautify code style
+2. Write tests to increase test-coverage
+3. Write tests of services
+4. Implement other user stories
+    
