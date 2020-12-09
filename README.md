@@ -1,9 +1,16 @@
-# notes:
+## PayDay Bank Solution
 ## URLs
 
 * database adminer URL: http://localhost:8080/
-* traefik GUI url: http://localhost.com:8081/
+* traefik GUI url: http://localhost:8081/
+    - System: `PostgreSQL`
+    - Server: `postgres`
+    - Username: `postgres`
+    - Password: `postgres`
+    - Database: `transactions`
 * openldap GUI url: http://localhost:8389
+    - username: `cn=admin,dc=paydaybank,dc=com`
+    - password: `admin_pass`
 * ms-auth swagger url: http://localhost/api/auth/swagger-ui.html
 
 
