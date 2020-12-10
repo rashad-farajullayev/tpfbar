@@ -12,6 +12,7 @@
     - username: `cn=admin,dc=paydaybank,dc=com`
     - password: `admin_pass`
 * ms-auth swagger url: http://localhost/api/auth/swagger-ui.html
+* ms-transaction swagger url: http://localhost/api/transaction/swagger-ui.html
 
 
 ## Microservices
