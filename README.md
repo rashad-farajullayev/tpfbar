@@ -13,7 +13,10 @@
     - password: `admin_pass`
 * ms-auth swagger url: http://localhost/api/auth/swagger-ui.html
 * ms-transaction swagger url: http://localhost/api/transaction/swagger-ui.html
-
+* ms-notification swagger url: http://localhost/api/notification/swagger-ui.html
+* ms-notification web GUI: http://localhost/api/notification
+    - username: `rfarajullayev`
+    - password: `rashad123456`
 
 ## Microservices
 
@@ -37,7 +40,16 @@
     | ----------------|:-------------:|
     |`cn=admin,dc=paydaybank,dc=com` | `admin_pass`|
 
-6. In the left menu choose `Create New Entry`.
+6. OpenLdap now comes with predefined users and their credentials for testing purposes. Here is the list of predefined users:
+    | Login           |    Password   |
+    | ----------------|:-------------:|
+    |`admin` | `admin_pass`|
+    |`rfarajullayev` | `rashad123456`|
+    |`mamed` | `mamed`|
+    You can use these users to login in from the ms-auth swagger or in the ms-notification test page.
+
+    If you want to create your own new LDAP users then follow the instrcutsions below. 
+    In the left menu choose `Create New Entry`.
     * Create new `Generic: Posix Group`. For example `IT`
     * Create new `Generic: User Account` by using the same `Create New Entry` link and enter details for new user of the system: In the details `Common Name` is the username used to login. In the GID Number you can choose the previously created group `IT`. 
     * Click the `Create` button and view the details. DN written above will show your username once more. 
@@ -59,7 +71,9 @@
     * userId: `rashadex`
     
     Click execute.
-13. Watch logs. After 2 mins a mock-up message will pop-up about rest request to hookUrl
+13. Watch logs. After 2 mins a mock-up message will pop-up about rest request to hookUrl. 
+14. After the transaction job finishes in two minutes it will automatically POST notification to corresponding user about it. You can see logs about it in the ms-transaction and ms-notification logs. Also, to see visually, you should preliminary be logged into test GUI at http://localhost/api/notification with the corresponding user
+15. To manually post notifications to users use swagger of ms notification http://localhost/api/notification/swagger-ui.html. Note, you must be preliminary logged in to the system from ms-auth. Copy the access token. In the ms-notification swagger click Authorize button. Write down "Bearer " and then paste that access token
 
 ---
 ## TODO

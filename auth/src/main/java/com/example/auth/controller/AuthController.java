@@ -7,13 +7,11 @@ import com.example.auth.service.AuthService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ldap.core.LdapTemplate;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
+@CrossOrigin
 @RestController
 @Slf4j
 public class AuthController {
@@ -26,7 +24,7 @@ public class AuthController {
     }
 
     @PostMapping("/login")
-    public LdapLoginResponse auth(@Valid LdapLoginRequest loginRequest) {
+    public LdapLoginResponse auth(@Valid @RequestBody LdapLoginRequest loginRequest) {
         return authService.login(loginRequest);
     }
 

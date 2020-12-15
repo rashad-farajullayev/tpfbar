@@ -1,4 +1,3 @@
-
 spring:
   datasource:
     driver: org.postgresql.Driver
@@ -24,3 +23,9 @@ server:
 
 ms-auth:
   url: "http://localhost:7080/validate"
+
+ms-notification:
+  url: "http://localhost:7081/notify"
+
+message:
+  template: "Dear %s, your transaction has successfully been processed and the results are posted to %s"

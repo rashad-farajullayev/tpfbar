@@ -1,0 +1,26 @@
+
+spring:
+  rabbitmq:
+    username: guest
+    password: guest
+    host: rabbit
+    port: 61613
+
+redis:
+  host: redis
+  port: 6379
+  database: 0
+  password:
+
+endpoint: /wsnotification
+webSocketUrl: http://localhost/api/notification
+staticResourceUrl: http://localhost/api/notification
+
+server:
+  port: 80
+
+ms-auth:
+  url:
+    validate: "http://ms-auth/validate"
+    login: "http://ms-auth/api/auth/login"
+    jslogin: "http://localhost/api/auth/login"

@@ -1,35 +1,30 @@
-package com.example.transactions.config;
+package com.example.notification.config;
 
-import com.example.transactions.config.filter.JwtFilter;
-import com.example.transactions.config.filter.JwtFilterImpl;
-import org.springframework.beans.factory.annotation.Value;
+import com.example.notification.config.filter.JwtFilter;
+import com.example.notification.config.filter.JwtFilterImpl;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
-import org.springframework.core.annotation.Order;
 import org.springframework.http.MediaType;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.access.intercept.FilterSecurityInterceptor;
 
 import java.util.Arrays;
 
-
 @Configuration
 @Import({JwtFilterImpl.class})
-@EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true)
-@Order(1)
-class JwtFilterConfig extends WebSecurityConfigurerAdapter {
+@EnableWebSecurity
+public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     private final JwtFilter jwtFilter;
 
-    public JwtFilterConfig(
+    public SecurityConfig(
             JwtFilter jwtFilter
     ) {
         this.jwtFilter = jwtFilter;
@@ -52,13 +47,21 @@ class JwtFilterConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http
-                .csrf().disable()
-                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-                .and()
-                .authorizeRequests().anyRequest().authenticated()
-                .and()
-                .antMatcher("/transaction")
-                .addFilterBefore(jwtFilter, FilterSecurityInterceptor.class);
+        http.cors().and().csrf().disable()
+                .addFilterBefore(jwtFilter, FilterSecurityInterceptor.class)
+                .authorizeRequests()
+                .antMatchers("/configuration/ui",
+                        "/swagger-resources",
+                        "/configuration/security",
+                        "/swagger-ui.html",
+                        "/webjars/**",
+                        "/v2/**",
+                        "/swagger-resources/configuration/ui",
+                        "/swagger-ui.html",
+                        "/swagger-resources/configuration/security").permitAll()
+                .antMatchers("/", "/css/**", "/js/**", "/img/**").permitAll()
+                .antMatchers("/wsnotification/**").permitAll()
+                .anyRequest().authenticated();
+
     }
 }

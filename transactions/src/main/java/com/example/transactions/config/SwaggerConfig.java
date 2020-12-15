@@ -1,11 +1,14 @@
 package com.example.transactions.config;
 
+import com.example.transactions.model.SecurityConstants;
 import com.google.common.base.Predicate;
 import com.google.common.base.Predicates;
 import com.google.common.collect.Lists;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import springfox.documentation.builders.PathSelectors;
 import springfox.documentation.builders.RequestHandlerSelectors;
 import springfox.documentation.service.ApiInfo;
@@ -27,8 +30,6 @@ import java.util.List;
 @EnableSwagger2
 public class SwaggerConfig {
 
-    private static final String AUTHORIZATION_HEADER = "Authorization";
-
     @Bean
     public Docket api() {
 
@@ -47,7 +48,7 @@ public class SwaggerConfig {
     }
 
     private ApiKey apiKey() {
-        return new ApiKey("JWT", AUTHORIZATION_HEADER, "header");
+        return new ApiKey("JWT", SecurityConstants.AUTHORIZATION_HEADER, "header");
     }
 
     private SecurityContext securityContext() {

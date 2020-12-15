@@ -6,7 +6,7 @@ import com.example.auth.model.LdapLoginResponse;
 
 public interface AuthService {
 
-    LdapLoginResponse login (LdapLoginRequest request);
+    LdapLoginResponse login(LdapLoginRequest request);
 
-    JwtValidationResponse validate (String jwtToken);
+    JwtValidationResponse validate(String jwtToken);
 }

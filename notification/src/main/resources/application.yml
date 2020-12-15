@@ -1,0 +1,34 @@
+
+spring:
+  rabbitmq:
+    username: guest
+    password: guest
+    host: localhost
+    port: 61613
+
+stomp:
+  broker:
+    relay: /topic/notification
+
+endpoint: /wsnotification
+webSocketUrl:
+staticResourceUrl: http://localhost:7081
+
+destination:
+  prefix: /app
+
+server:
+  port: 7081
+
+ms-auth:
+  url:
+    validate: "http://localhost:7080/validate"
+    login: "http://localhost:7080/login"
+    jslogin: "http://localhost:7080/login"
+
+redis:
+  host: "localhost"
+  port: 6379
+  database: 0
+  password:
+

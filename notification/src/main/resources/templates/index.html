@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.springframework.org/schema/mvc">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <title>PayDayBank Notification</title>
+    <link rel="stylesheet" th:href="${staticUrl + '/css/style.css'}" />
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+
+    <!-- Simple Notification -->
+    <link rel="stylesheet" th:href="${staticUrl + '/css/notifications.css'}">
+</head>
+<body>
+
+<div id="login-page" class="wrapper fadeInDown">
+    <div id="formContent">
+        <!-- Tabs Titles -->
+
+        <!-- Icon -->
+        <div class="fadeIn first">
+            <img th:src="${staticUrl + '/img/user.svg'}" id="icon" alt="User Icon"/>
+        </div>
+
+        <!-- Login Form -->
+        <form id="loginForm">
+            <div class="row">
+                <div class="col-sm-12">
+                    <input type="text" id="login" class="fadeIn second form-control-lg" name="login" placeholder="login"/>
+                </div>
+                <div class="col-sm-12">
+                    <input type="password" id="password" class="fadeIn third form-control-lg" name="password" placeholder="password"/>
+                </div>
+                <div class="col-sm-12">
+                    <input type="submit" class="fadeIn fourth" value="Log In">
+                </div>
+            </div>
+
+        </form>
+    </div>
+</div>
+
+<div id="dialogue-page" class="visually-hidden">
+    <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #e3f2fd;">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">PayDayBank</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Campaigns</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Services</a>
+                    </li>
+                </ul>
+                <form class="d-flex">
+                    <div>Logged in as <span id="loggedinUser"></span>Rashad</div>
+                </form>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container-fluid">
+        <div class="toast d-flex align-items-center text-white bg-primary border-0" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="toast-body">
+                Hello, world! This is a toast message.
+            </div>
+            <button type="button" class="btn-close btn-close-white ms-auto me-2" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.1.4/sockjs.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
+
+<script th:inline="javascript">
+    var loginUrl = [[${loginUrl}]];
+    var webSocketUrl = [[${webSocketUrl}]];
+</script>
+
+<!-- Simple Notification -->
+<script th:src="${staticUrl + '/js/notifications.js'}"></script>
+<script th:src="${staticUrl + '/js/script.js'}"></script>
+</body>
+</html>

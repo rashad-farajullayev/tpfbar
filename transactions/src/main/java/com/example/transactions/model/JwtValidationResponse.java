@@ -1,4 +1,4 @@
-package com.example.transactions.config.filter;
+package com.example.transactions.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -10,4 +10,5 @@ import lombok.NoArgsConstructor;
 public class JwtValidationResponse {
     String userName;
     boolean isValid;
+    String emailAddress;
 }
