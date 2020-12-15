@@ -4,6 +4,7 @@ import com.example.transactions.model.Transaction;
 import com.example.transactions.service.TransactionService;
 import io.swagger.annotations.ApiParam;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 import springfox.documentation.annotations.ApiIgnore;
@@ -20,9 +21,9 @@ public class TransactionController {
     }
 
     @PostMapping("/transaction")
-    public boolean newTransaction(Transaction transaction, @ApiIgnore Authentication authentication) throws ExecutionException, InterruptedException {
+    public boolean newTransaction(Transaction transaction) throws ExecutionException, InterruptedException {
 
-
-        return transactionService.createTransaction(transaction, authentication).get().booleanValue();
+        var auth = SecurityContextHolder.getContext().getAuthentication();
+        return transactionService.createTransaction(transaction, auth).get().booleanValue();
     }
 }
