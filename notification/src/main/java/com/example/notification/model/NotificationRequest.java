@@ -1,9 +1,6 @@
 package com.example.notification.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.*;
 import org.springframework.validation.annotation.Validated;
 
 import javax.validation.constraints.*;
@@ -12,16 +9,18 @@ import javax.validation.constraints.*;
 @AllArgsConstructor
 @ToString
 @Data
-@Validated
+@Builder
 public class NotificationRequest {
+
+    @NotNull
+    @Size(min = 1, max = 50, message = "Please specify author name of this message")
     private String from;
 
     @NotNull
     @Size(min = 1, max = 50, message = "Please specify username to whome you wonna send the message")
     private String to;
 
-    @Max(value = 10)
-    @Pattern(regexp = "[success|info|warning|error]")
+    @Size(min = 1, max = 10)
     private String type;
 
     @NotBlank

@@ -1,5 +1,6 @@
 package com.example.notification.controller;
 
+import com.example.notification.model.NotificationChannel;
 import com.example.notification.model.NotificationRequest;
 import com.example.notification.service.NotificationService;
 import io.swagger.annotations.ApiResponse;
@@ -32,18 +33,9 @@ public class NotificationProducerController {
                     examples = @Example(value=@ExampleProperty(mediaType = "application/json", value = "{\n" +
                     "  \"channel\": \"NONE\",\n" +
                     "  \"successfullySent\": false\n" +
-                    "}"))),
-            @ApiResponse(message = "Validation failed", code = 422, response = NotificationResponse.class,
-            examples = @Example(value=@ExampleProperty(mediaType = "application/json", value = "{\n" +
-                    "  \"channel\": \"NONE\",\n" +
-                    "  \"successfullySent\": false\n" +
                     "}")))
     })
-    public ResponseEntity<NotificationResponse> testMessage (@Valid @RequestBody @ModelAttribute NotificationRequest message, BindingResult result) {
-
-        if (result.hasErrors()) {
-            return ResponseEntity.status(HttpStatus.UNPROCESSABLE_ENTITY).body(NotificationResponse.builder().build());
-        }
+    public ResponseEntity<NotificationResponse> testMessage (@Valid @RequestBody NotificationRequest message) {
 
         var response = notificationService.sendNotification(message);
 
